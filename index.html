@@ -11,52 +11,75 @@
   />
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
   <style>
+    /* Fullscreen canvas */
     html, body { margin: 0; height: 100%; }
     #panorama { width: 100%; height: 100%; }
+
+    /* Vergroot de scene-hotspots */
+    .pnlm-hotspot-icon-scene {
+      width: 48px !important;
+      height: 48px !important;
+      background-size: contain !important;
+    }
   </style>
 </head>
 <body>
   <div id="panorama"></div>
+
   <script>
+    // Aantal scènes
     const totalScenes = 27;
     const scenesConfig = {};
+
     for (let i = 1; i <= totalScenes; i++) {
       const id = `scene${i}`;
       const hotSpots = [];
+
+      // Vorige (behalve bij scène1)
       if (i > 1) {
         hotSpots.push({
-          pitch: 0,
-          yaw: 90,
+          pitch: 0,          // hoogte van de pijl
+          yaw:  90,          // draai de pijl naar rechts
           type: "scene",
           text: "← Vorige",
-          sceneId: `scene${i-1}`,
+          sceneId: `scene${i-1}`
         });
       }
+      // Volgende (behalve bij laatste scène)
       if (i < totalScenes) {
         hotSpots.push({
           pitch: 0,
-          yaw: -90,
+          yaw:  -90,         // draai de pijl naar links
           type: "scene",
           text: "Volgende →",
-          sceneId: `scene${i+1}`,
+          sceneId: `scene${i+1}`
         });
       }
+
       scenesConfig[id] = {
         title: `Scene ${i}`,
         type: "equirectangular",
         panorama: `images/${id}.jpg`,
-        hotSpots: hotSpots,
+        // Startkijkhoek direct op de eerste hotspot
+        yaw:   hotSpots.length ? hotSpots[0].yaw   : 0,
+        pitch: hotSpots.length ? hotSpots[0].pitch : 0,
+        hotSpots: hotSpots
       };
     }
+
+    // Start de viewer met default-yaw voor scène 1 zodat je pijltje meteen ziet
     pannellum.viewer("panorama", {
       default: {
-        firstScene: "scene1",
+        firstScene:       "scene1",
         sceneFadeDuration: 1000,
-        autoLoad: true,
+        autoLoad:         true,
+        yaw:              scenesConfig["scene1"].yaw,
+        pitch:            scenesConfig["scene1"].pitch
       },
-      scenes: scenesConfig,
+      scenes: scenesConfig
     });
   </script>
 </body>
 </html>
+
 
