@@ -1,0 +1,456 @@
+{
+    "rooms": [
+        {
+            "image": "scene1",
+            "name": "inkom",
+            "paths": [
+                {
+                    "room": "gang beneden vanvoor",
+                    "yaw": -23,
+                    "pitch": 0
+                },
+                {
+                    "room": "consultatiegang",
+                    "yaw": 60,
+                    "pitch": 10
+                }
+            ]
+        },
+        {
+            "image": "scene2",
+            "name": "gang beneden vanvoor",
+            "paths": [
+                {
+                    "room": "gang beneden",
+                    "yaw": 0,
+                    "pitch": 0
+                },
+                {
+                    "room": "inkom",
+                    "yaw": 65,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene3",
+            "name": "gang beneden",
+            "paths": [
+                {
+                    "room": "woonkamer",
+                    "yaw": -40,
+                    "pitch": 0
+                },
+                {
+                    "room": "vestiare",
+                    "yaw": -90,
+                    "pitch": 0
+                },
+                {
+                    "room": "wasplaats",
+                    "yaw": 10,
+                    "pitch": 0
+                },
+                {
+                    "room": "kelder",
+                    "yaw": 40,
+                    "pitch": 0
+                },
+                {
+                    "room": "benedentrap",
+                    "yaw": 80,
+                    "pitch": 5
+                },
+                {
+                    "room": "gang beneden vanvoor",
+                    "yaw": -180,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene4",
+            "name": "vestiare",
+            "paths": [
+                {
+                    "room": "gang beneden",
+                    "yaw": 160,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene5",
+            "name": "woonkamer",
+            "paths": [
+                {
+                    "room": "eettafel",
+                    "yaw": -160,
+                    "pitch": 0
+                },
+                {
+                    "room": "gang beneden",
+                    "yaw": -33,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene6",
+            "name": "eettafel",
+            "paths": [
+                {
+                    "room": "keuken",
+                    "yaw": -178,
+                    "pitch": 0
+                },
+                {
+                    "room": "woonkamer",
+                    "yaw": -100,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene7",
+            "name": "keuken",
+            "paths": [
+                {
+                    "room": "wasplaats",
+                    "yaw": 40,
+                    "pitch": 0
+                },
+                {
+                    "room": "eettafel",
+                    "yaw": 120,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene8",
+            "name": "wasplaats",
+            "paths": [
+                {
+                    "room": "gang beneden",
+                    "yaw": -90,
+                    "pitch": 0
+                },
+                {
+                    "room": "keuken",
+                    "yaw": 90,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene9",
+            "name": "kelder",
+            "paths": [
+                {
+                    "room": "kelder verder",
+                    "yaw": 140,
+                    "pitch": 0
+                },
+                {
+                    "room": "gang beneden",
+                    "yaw": 28,
+                    "pitch": 10
+                }
+            ]
+        },
+        {
+            "image": "scene10",
+            "name": "kelder verder",
+            "paths": [
+                {
+                    "room": "kelder",
+                    "yaw": -140,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene11",
+            "name": "benedentrap",
+            "paths": [
+                {
+                    "room": "overloop",
+                    "yaw": -25,
+                    "pitch": 15
+                },
+                {
+                    "room": "gang beneden",
+                    "yaw": -45,
+                    "pitch": -20
+                }
+            ]
+        },
+        {
+            "image": "scene12",
+            "name": "overloop",
+            "paths": [
+                {
+                    "room": "consultatiegang",
+                    "yaw": -45,
+                    "pitch": 0
+                },
+                {
+                    "room": "speelkamer",
+                    "yaw": 175,
+                    "pitch": 0
+                },
+                {
+                    "room": "boventrap",
+                    "yaw": -75,
+                    "pitch": 10
+                },
+                {
+                    "room": "benedentrap",
+                    "yaw": -95,
+                    "pitch": -25
+                }
+            ]
+        },
+        {
+            "image": "scene13",
+            "name": "consultatiegang",
+            "paths": [
+                {
+                    "room": "wachtkamer",
+                    "yaw": -130,
+                    "pitch": 0
+                },
+                {
+                    "room": "consultatieplaats",
+                    "yaw": -80,
+                    "pitch": 0
+                },
+                {
+                    "room": "overloop",
+                    "yaw": 80,
+                    "pitch": 0
+                },
+                {
+                    "room": "inkom",
+                    "yaw": 160,
+                    "pitch": -30
+                }
+            ]
+        },
+        {
+            "image": "scene14",
+            "name": "wachtkamer",
+            "paths": [
+                {
+                    "room": "consultatiegang",
+                    "yaw": -25,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene15",
+            "name": "consultatieplaats",
+            "paths": [
+                {
+                    "room": "consultatieplaats onderzoek",
+                    "yaw": -12.5,
+                    "pitch": 0
+                },
+                {
+                    "room": "consultatiegang",
+                    "yaw": 45,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene16",
+            "name": "consultatieplaats onderzoek",
+            "paths": [
+                {
+                    "room": "labo",
+                    "yaw": 170,
+                    "pitch": 0
+                },
+                {
+                    "room": "consultatieplaats",
+                    "yaw": -45,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene17",
+            "name": "labo",
+            "paths": [
+                {
+                    "room": "consultatieplaats onderzoek",
+                    "yaw": 128,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene18",
+            "name": "speelkamer",
+            "paths": [
+                {
+                    "room": "overloop",
+                    "yaw": 90,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene19",
+            "name": "boventrap",
+            "paths": [
+                {
+                    "room": "gang boven vanachter",
+                    "yaw": 180,
+                    "pitch": 10
+                },
+                {
+                    "room": "overloop",
+                    "yaw": 160,
+                    "pitch": -30
+                }
+            ]
+        },
+        {
+            "image": "scene20",
+            "name": "gang boven vanachter",
+            "paths": [
+                {
+                    "room": "slaapkamer vanachter",
+                    "yaw": 0,
+                    "pitch": 0
+                },
+                {
+                    "room": "slaapkamer omi en opi",
+                    "yaw": -80,
+                    "pitch": 0
+                },
+                {
+                    "room": "boventrap",
+                    "yaw": 55,
+                    "pitch": -30
+                },
+                {
+                    "room": "gang boven vanvoor",
+                    "yaw": 170,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene21",
+            "name": "slaapkamer omi en opi",
+            "paths": [
+                {
+                    "room": "badkamer",
+                    "yaw": 8,
+                    "pitch": 0
+                },
+                {
+                    "room": "gang boven vanachter",
+                    "yaw": -58,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene22",
+            "name": "kleedkamer",
+            "paths": [
+                {
+                    "room": "gang boven vanvoor",
+                    "yaw": -10,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene23",
+            "name": "badkamer",
+            "paths": [
+                {
+                    "room": "slaapkamer omi en opi",
+                    "yaw": -30,
+                    "pitch": 10
+                },
+                {
+                    "room": "gang boven vanvoor",
+                    "yaw": 8,
+                    "pitch": 35
+                }
+            ]
+        },
+        {
+            "image": "scene24",
+            "name": "gang boven vanvoor",
+            "paths": [
+                {
+                    "room": "kleedkamer",
+                    "yaw": 60,
+                    "pitch": 0
+                },
+                {
+                    "room": "slaapkamer midden vanvoor",
+                    "yaw": 173,
+                    "pitch": 0
+                },
+                {
+                    "room": "slaapkamer tante veerle",
+                    "yaw": -135,
+                    "pitch": 0
+                },
+                {
+                    "room": "badkamer",
+                    "yaw": -87,
+                    "pitch": 0
+                },
+                {
+                    "room": "gang boven vanachter",
+                    "yaw": 0,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene25",
+            "name": "slaapkamer tante veerle",
+            "paths": [
+                {
+                    "room": "gang boven vanvoor",
+                    "yaw": -165,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene26",
+            "name": "slaapkamer midden vanvoor",
+            "paths": [
+                {
+                    "room": "gang boven vanvoor",
+                    "yaw": 20,
+                    "pitch": 0
+                }
+            ]
+        },
+        {
+            "image": "scene27",
+            "name": "slaapkamer vanachter",
+            "paths": [
+                {
+                    "room": "gang boven vanachter",
+                    "yaw": -84,
+                    "pitch": 0
+                }
+            ]
+        }
+    ]
+}
