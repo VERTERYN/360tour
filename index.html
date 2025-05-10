@@ -29,19 +29,11 @@
     fetch('navigation.json')
       .then(response => response.json())
       .then(navigationData => {
-
-        // Create a mapping of room names to image names
-        const roomToImage = {};
-        navigationData.rooms.forEach(room => {
-          roomToImage[room.name] = room.image;
-        });
-        
         const scenesConfig = {};
   
         // Each room corresponds to a scene with paths to other rooms,
         // defined as hotspots (navigational arrows) in the panorama.
         navigationData.rooms.forEach(room => {
-          const image = room.image;
           const hotSpots = [];
           room.paths.forEach(otherRoom => {
               hotSpots.push({
@@ -57,7 +49,7 @@
           scenesConfig[room.name] = {
             title: room.name, // Use room name as title
             type: "equirectangular",
-            panorama: `images/${image}.jpg`,
+            panorama: `images/${room.image}.jpg`,
             // Default view will show the first hotspot
             yaw: hotSpots[0].yaw,
             pitch: hotSpots[0].pitch,
@@ -75,7 +67,10 @@
         navDisplay.style.color = 'white';
         navDisplay.style.padding = '5px';
         navDisplay.style.zIndex = '100';
-        // document.body.appendChild(navDisplay); uncomment this to show the nav display
+        // uncomment this to show the nav display if you want to calibrate the arrows
+        // by visually checking the yaw and pitch to match the direction you want
+        // the path to go.
+        // document.body.appendChild(navDisplay);
     
         // Initialize the panorama viewer
         viewer = pannellum.viewer("panorama", {
@@ -89,19 +84,15 @@
           scenes: scenesConfig
         });
 
-        // Add event listener to update nav display
-        viewer.on('mouseup', function() {
+        // Add event listener and initial trigger to update nav display when
+        // using the mouse to look around.
+        function updateNavDisplay() {
           const yaw = viewer.getYaw();
           const pitch = viewer.getPitch();
           navDisplay.textContent = `Yaw: ${yaw.toFixed(1)}°, Pitch: ${pitch.toFixed(1)}°`;
-        });
-        
-        // Initial nav display
-        setTimeout(() => {
-          const yaw = viewer.getYaw();
-          const pitch = viewer.getPitch();
-          navDisplay.textContent = `Yaw: ${yaw.toFixed(1)}°, Pitch: ${pitch.toFixed(1)}°`;
-        }, 500);
+        }
+        viewer.on('mouseup', function (){updateNavDisplay();});
+        setTimeout(() => {updateNavDisplay();}, 500);
 
       })
       .catch(error => {
@@ -110,5 +101,3 @@
   </script>
 </body>
 </html>
-
-
