@@ -25,59 +25,88 @@
 </head>
 <body>
   <div id="panorama"></div>
-
   <script>
-    // Aantal scènes
-    const totalScenes = 27;
-    const scenesConfig = {};
+    fetch('navigation.json')
+      .then(response => response.json())
+      .then(navigationData => {
 
-    for (let i = 1; i <= totalScenes; i++) {
-      const id = `scene${i}`;
-      const hotSpots = [];
-
-      // Vorige (behalve bij scène1)
-      if (i > 1) {
-        hotSpots.push({
-          pitch: 0,          // hoogte van de pijl
-          yaw:  90,          // draai de pijl naar rechts
-          type: "scene",
-          text: "← Vorige",
-          sceneId: `scene${i-1}`
+        // Create a mapping of room names to image names
+        const roomToImage = {};
+        navigationData.rooms.forEach(room => {
+          roomToImage[room.name] = room.image;
         });
-      }
-      // Volgende (behalve bij laatste scène)
-      if (i < totalScenes) {
-        hotSpots.push({
-          pitch: 0,
-          yaw:  -90,         // draai de pijl naar links
-          type: "scene",
-          text: "Volgende →",
-          sceneId: `scene${i+1}`
+        
+        const scenesConfig = {};
+  
+        // Each room corresponds to a scene with paths to other rooms,
+        // defined as hotspots (navigational arrows) in the panorama.
+        navigationData.rooms.forEach(room => {
+          const image = room.image;
+          const hotSpots = [];
+          room.paths.forEach(otherRoom => {
+              hotSpots.push({
+                pitch: otherRoom.pitch,
+                yaw: otherRoom.yaw,
+                type: "scene",
+                text: otherRoom.room, // Use room name as text
+                sceneId: otherRoom.room
+              });
+            }
+          );
+  
+          scenesConfig[room.name] = {
+            title: room.name, // Use room name as title
+            type: "equirectangular",
+            panorama: `images/${image}.jpg`,
+            // Default view will show the first hotspot
+            yaw: hotSpots[0].yaw,
+            pitch: hotSpots[0].pitch,
+            hotSpots: hotSpots
+          };
         });
-      }
+  
+        // Create a nav display element
+        const navDisplay = document.createElement('div');
+        navDisplay.id = 'nav-display';
+        navDisplay.style.position = 'absolute';
+        navDisplay.style.top = '10px';
+        navDisplay.style.left = '10px';
+        navDisplay.style.background = 'rgba(0,0,0,0.5)';
+        navDisplay.style.color = 'white';
+        navDisplay.style.padding = '5px';
+        navDisplay.style.zIndex = '100';
+        // document.body.appendChild(navDisplay); uncomment this to show the nav display
+    
+        // Initialize the panorama viewer
+        viewer = pannellum.viewer("panorama", {
+          default: {
+            firstScene: "inkom",
+            sceneFadeDuration: 1000,
+            autoLoad: true,
+            yaw: 0,
+            pitch: 0,
+          },
+          scenes: scenesConfig
+        });
 
-      scenesConfig[id] = {
-        title: `Scene ${i}`,
-        type: "equirectangular",
-        panorama: `images/${id}.jpg`,
-        // Startkijkhoek direct op de eerste hotspot
-        yaw:   hotSpots.length ? hotSpots[0].yaw   : 0,
-        pitch: hotSpots.length ? hotSpots[0].pitch : 0,
-        hotSpots: hotSpots
-      };
-    }
+        // Add event listener to update nav display
+        viewer.on('mouseup', function() {
+          const yaw = viewer.getYaw();
+          const pitch = viewer.getPitch();
+          navDisplay.textContent = `Yaw: ${yaw.toFixed(1)}°, Pitch: ${pitch.toFixed(1)}°`;
+        });
+        
+        // Initial nav display
+        setTimeout(() => {
+          const yaw = viewer.getYaw();
+          const pitch = viewer.getPitch();
+          navDisplay.textContent = `Yaw: ${yaw.toFixed(1)}°, Pitch: ${pitch.toFixed(1)}°`;
+        }, 500);
 
-    // Start de viewer met default-yaw voor scène 1 zodat je pijltje meteen ziet
-    pannellum.viewer("panorama", {
-      default: {
-        firstScene:       "scene1",
-        sceneFadeDuration: 1000,
-        autoLoad:         true,
-        yaw:              scenesConfig["scene1"].yaw,
-        pitch:            scenesConfig["scene1"].pitch
-      },
-      scenes: scenesConfig
-    });
+      })
+      .catch(error => {
+        console.error('Error loading navigation data:', error);
+      });
   </script>
 </body>
 </html>
